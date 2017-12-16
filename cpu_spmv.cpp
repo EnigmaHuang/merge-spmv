@@ -299,8 +299,8 @@ void OmpMergeCsrmv(
     ValueT*     __restrict        vector_y_out)
 {
     // Temporary storage for inter-thread fix-up after load-balanced work
-    OffsetT     row_carry_out[256];     // The last row-id each worked on by each thread when it finished its path segment
-    ValueT      value_carry_out[256];   // The running total within each thread when it finished its path segment
+    OffsetT     row_carry_out[512];     // The last row-id each worked on by each thread when it finished its path segment
+    ValueT      value_carry_out[512];   // The running total within each thread when it finished its path segment
 
     #pragma omp parallel for schedule(static) num_threads(num_threads)
     for (int tid = 0; tid < num_threads; tid++)
